@@ -1,3 +1,11 @@
+export const extractFormData = (form) =>
+    Array.from(form.elements).reduce(
+        (acc, { id, value }) => ({
+            [id]: value,
+            ...acc,
+        }), {}
+    );
+
 export const getCurrencySymbol = (country) => {
     const currencies = {
         gb: '£',
@@ -7,8 +15,3 @@ export const getCurrencySymbol = (country) => {
     };
     return currencies[country];
 };
-
-export const extractFormData = (form) =>
-    Array.from(form.elements).reduce(
-        (acc, { id, value }) => ({...acc, [id]: value }, {})
-    );

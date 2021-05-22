@@ -10,7 +10,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "parcel": "^2.0.0-beta.2"
+        "parcel": "^2.0.0-beta.2",
+        "sass": "^1.34.0"
     },
     "devDependencies": {
         "@parcel/transformer-sass": "^2.0.0-beta.2"

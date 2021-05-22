@@ -1,48 +1,59 @@
-import { extractFormData, getCurrencySymbol } from './utils';
 import { jobTemplate } from './templates';
-class JobSearch {
+import { extractFormData, getCurrencySymbol } from './utils';
+
+export class JobSearch {
     constructor(
         searchFormSelector,
-        resultscontainerSelector,
+        resultsContainerSelector,
         loadingElementSelector
     ) {
         this.searchForm = document.querySelector(searchFormSelector);
-        this.resultsContainer = document.querySelector(resultscontainerSelector);
+        this.resultsContainer = document.querySelector(resultsContainerSelector);
         this.loadingElement = document.querySelector(loadingElementSelector);
     }
 
     setCountryCode() {
-        this.countryCode = 'gb';
+        this.countryCode = 'au';
         this.setCurrencySymbol();
 
         fetch('http://ip-api.com/json')
             .then((results) => results.json())
-            .then((result) => {
-                this.setCountryCode = result.countryCode.toLowerCase();
+            .then((results) => {
+                this.countryCode = results.countryCode.toLowerCase();
                 this.setCurrencySymbol();
             });
     }
 
-    setCurrencyCode() {
-        this.getCurrencySymbol = getCurrencySymbol(this.countryCode);
+    setCurrencySymbol() {
+        this.currencySymbol = getCurrencySymbol(this.countryCode);
     }
 
     configureFormListener() {
-        this.searchForm.addEvenListener('submit', (event) => {
+        this.searchForm.addEventListener('submit', (event) => {
             event.preventDefault();
+            this.startLoading();
             this.resultsContainer.innerHTML = '';
             const { search, location } = extractFormData(this.searchForm);
-
             fetch(
-                    `http://localhost:3000/?search=${search}&location=${location}&county=${this.countryCode}`
+                    `http://localhost:3000/?search=${search}&location=${location}&country=${this.countryCode}`
                 )
                 .then((response) => response.json())
                 .then(({ results }) => {
+                    this.stopLoading();
                     return results
-                        .map((job) => jobTemplate(job, this.getCurrencySymbol))
+                        .map((job) => jobTemplate(job, this.currencySymbol))
                         .join('');
                 })
-                .then((jobs) => (this.resultsContainer.innerHTML = jobs));
+                .then((jobs) => (this.resultsContainer.innerHTML = jobs))
+                .catch(() => this.stopLoading());
         });
+    }
+
+    startLoading() {
+        this.loadingElement.classList.add('loading');
+    }
+
+    stopLoading() {
+        this.loadingElement.classList.remove('loading');
     }
 }
