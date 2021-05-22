@@ -37,8 +37,6 @@ server.listen(port, () => {
   console.log(chalk.green(`Server listening ${port}`));
 });
 
-console.log(BASE_URL);
-console.log(BASE_PARAMS);
 // helper function to decode parameter from the search url to JS OBJ => ?search=javascript&location=sydney
 const decodeParams = (searchParams) =>
   Array.from(searchParams.keys()).reduce(
