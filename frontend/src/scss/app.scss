@@ -2,24 +2,40 @@ header {
     padding: 50px;
     background-image: url(../img/business.jpg);
     background-repeat: no-repeat;
-    height: 400px;
+    background-size: 100%, 50%;
+    h1 {
+        color: #fff;
+    }
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        color: #fff;
     }
     form {
         margin-top: 50px;
         max-width: 400px;
     }
+    input {
+        margin-bottom: 10px;
+    }
+}
+
+main {
+    background-color: rgb(228, 227, 227);
 }
 
 .select {
     width: 49%;
-    margin: 5px 0;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .card {
-    margin: 25px 0;
+    margin-top: 1.2rem;
+}
+
+.result-container {
+    padding-top: 2rem;
 }
 
 .loading-element {
