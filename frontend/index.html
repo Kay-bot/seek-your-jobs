@@ -7,17 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/scss/app.scss">
-    <title>Seek Your Jobs</title>
+    <title>Job Search Application</title>
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h1>Job Search App</h1>
-            <h2>Find your perfect job today!</h2>
+            <h1>Application Developer Job Search</h1>
+            <h2>Find your career as a an application developer today!</h2>
             <form id="search-form">
                 <input type="text" class="form-control" placeholder="Job Title" id="search">
                 <input type="text" class="form-control" placeholder="Location" id="location">
+                <select class="select" id="salary_min">
+                    <option value="0">No Min</option>
+                    <option value="30000">30K</option>
+                    <option value="40000">40K</option>
+                    <option value="50000">50K</option>
+                    <option value="60000">60K</option>
+                    <option value="70000">70K</option>
+                    <option value="80000">80K</option>
+                    <option value="90000">90K</option>
+                    <option value="100000">100K</option>
+                    <option value="120000">120K</option>
+                    <option value="150000">150K</option>
+                    <option value="200000">200K</option>
+                </select>
+                <select class="select" id="salary_max">
+                    <option value="500000">No Max</option>
+                    <option value="30000">30K</option>
+                    <option value="40000">40K</option>
+                    <option value="50000">50K</option>
+                    <option value="60000">60K</option>
+                    <option value="70000">70K</option>
+                    <option value="80000">80K</option>
+                    <option value="90000">90K</option>
+                    <option value="100000">100K</option>
+                    <option value="120000">120K</option>
+                    <option value="150000">150K</option>
+                    <option value="200000">200K</option>
+                </select>
                 <button class="btn btn-block btn-primary">Search</button>
             </form>
         </div>

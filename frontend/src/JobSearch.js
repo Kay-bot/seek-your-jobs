@@ -13,15 +13,15 @@ export class JobSearch {
     }
 
     setCountryCode() {
-        this.countryCode = 'au';
+        this.countryCode = 'gb';
         this.setCurrencySymbol();
 
-        fetch('http://ip-api.com/json')
-            .then((results) => results.json())
-            .then((results) => {
-                this.countryCode = results.countryCode.toLowerCase();
-                this.setCurrencySymbol();
-            });
+        // fetch('http://ip-api.com/json')
+        //     .then((results) => results.json())
+        //     .then((results) => {
+        //         this.countryCode = results.countryCode.toLowerCase();
+        //         this.setCurrencySymbol();
+        //     });
     }
 
     setCurrencySymbol() {
@@ -33,10 +33,8 @@ export class JobSearch {
             event.preventDefault();
             this.startLoading();
             this.resultsContainer.innerHTML = '';
-            const { search, location } = extractFormData(this.searchForm);
-            fetch(
-                    `http://localhost:3000/?search=${search}&location=${location}&country=${this.countryCode}`
-                )
+            const { search, location, salary_min, salary_max } = extractFormData(this.searchForm);
+            fetch(`http://localhost:3000/?search=${search}&location=${location}&salary_min=${salary_min}&salary_max=${salary_max}&country=${this.countryCode}`)
                 .then((response) => response.json())
                 .then(({ results }) => {
                     this.stopLoading();
