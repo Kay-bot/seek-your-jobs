@@ -31,9 +31,9 @@ export class JobSearch {
     configureFormListener() {
         this.searchForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            this.startLoading();
             this.resultsContainer.innerHTML = '';
             const { search, location, salary_min, salary_max } = extractFormData(this.searchForm);
+            this.startLoading();
             fetch(`http://localhost:3000/?search=${search}&location=${location}&salary_min=${salary_min}&salary_max=${salary_max}&country=${this.countryCode}`)
                 .then((response) => response.json())
                 .then(({ results }) => {
