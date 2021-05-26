@@ -3,7 +3,20 @@ const url = require('url');
 const axios = require('axios');
 const chalk = require('chalk');
 const { app_id, app_key, port, BASE_URL, BASE_PARAMS } = require('./config');
-const { headers, decodeParams } = require('./helper')
+
+
+
+const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET',
+};
+
+// helper function to decode parameter from the search params from url to JS OBJ => ?search=javascript&location=sydney
+const decodeParams = (searchParams) =>
+    Array.from(searchParams.keys()).reduce(
+        (acc, key) => ({...acc, [key]: searchParams.get(key) }), {}
+    );
 
 const server = createServer((req, res) => {
     const requestURL = url.parse(req.url);

@@ -7,4 +7,4 @@ export const jobTemplate = (job, currency) => `
   <a href="${job.redirect_url}">View Job</a>
   </div>
 </div>
-`;
+;`
