@@ -16,12 +16,12 @@ export class JobSearch {
         this.countryCode = 'gb';
         this.setCurrencySymbol();
 
-        // fetch('http://ip-api.com/json')
-        //     .then((results) => results.json())
-        //     .then((results) => {
-        //         this.countryCode = results.countryCode.toLowerCase();
-        //         this.setCurrencySymbol();
-        //     });
+        fetch('http://ip-api.com/json')
+            .then((results) => results.json())
+            .then((results) => {
+                this.countryCode = results.countryCode.toLowerCase();
+                this.setCurrencySymbol();
+            });
     }
 
     setCurrencySymbol() {
