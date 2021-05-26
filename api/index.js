@@ -13,7 +13,7 @@ const headers = {
 const server = createServer((req, res) => {
     const requestURL = url.parse(req.url);
     const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
-    const { salary_min, salary_max, search, location, country = 'gb' } = decodedParams;
+    const { salary_min, salary_max, search, location, country } = decodedParams;
 
     const targetURL = `${BASE_URL}/${country.toLowerCase()}/${BASE_PARAMS}&app_id=${app_id}&app_key=${app_key}&what=${search}&where=${location}&salary_min=${salary_min}&salary_max=${salary_max}`;
 
