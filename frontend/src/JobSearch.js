@@ -1,5 +1,6 @@
+import { getCurrencySymbol, extractFormData } from './utils';
 import { jobTemplate } from './templates';
-import { extractFormData, getCurrencySymbol } from './utils';
+import { API, IP_API } from './config'
 
 export class JobSearch {
     constructor(
@@ -16,7 +17,7 @@ export class JobSearch {
         this.countryCode = 'gb';
         this.setCurrencySymbol();
 
-        fetch('http://ip-api.com/json')
+        fetch(`${IP_API}`)
             .then((results) => results.json())
             .then((results) => {
                 this.countryCode = results.countryCode.toLowerCase();
@@ -34,7 +35,7 @@ export class JobSearch {
             this.resultsContainer.innerHTML = '';
             const { search, location, salary_min, salary_max } = extractFormData(this.searchForm);
             this.startLoading();
-            fetch(`http://localhost:3000/?search=${search}&location=${location}&salary_min=${salary_min}&salary_max=${salary_max}&country=${this.countryCode}`)
+            fetch(`${API}/?search=${search}&location=${location}&salary_min=${salary_min}&salary_max=${salary_max}&country=${this.countryCode}`)
                 .then((response) => response.json())
                 .then(({ results }) => {
                     this.stopLoading();
